@@ -1,0 +1,11 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Are you sure you want to delete {{ transactiontype.name }}?</h2>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirm Delete</button>
+    <a href="{% url 'transaction_type_detail' transactiontype.pk %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

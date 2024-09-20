@@ -7,9 +7,20 @@
         <div class="col-md-6">
             <h3>Transaction Type Details</h3>
             
-            <p class="text-primary">{{transactiontype.name}}</p>
-            <p class="text-primary">{{transactiontype.description}}</p>
+            <p class="text-primary">{{ transactiontype.name }}</p>
+            <p class="text-primary">{{ transactiontype.description }}</p>
 
+            <!-- Update Button -->
+            <a href="{% url 'transaction_type_update' transactiontype.pk %}" class="btn btn-primary mt-3">
+                Update
+            </a>
+
+            <form method="POST" action="{% url 'transaction_type_delete' transactiontype.pk %}" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger mt-3">
+                    Delete
+                </button>
+            </form>
         </div>
     </div>
 </div>

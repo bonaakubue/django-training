@@ -22,3 +22,14 @@ class TransactionTypeDetailView(DetailView):
     model = TransactionType
     template_name = 'payment/transaction_type_detail.html'
     context_object_name = 'transactiontype'
+
+class TransactionTypeUpdateView(UpdateView):
+    model = TransactionType
+    form_class = TransactionTypeForm
+    template_name = 'payment/transaction_type_update.html'
+    success_url = reverse_lazy('transaction_type_list')
+
+class TransactionTypeDeleteView(DeleteView):
+    model = TransactionType
+    template_name = 'payment/transaction_type_confirm_delete.html'
+    success_url = reverse_lazy('transaction_type_list') 
