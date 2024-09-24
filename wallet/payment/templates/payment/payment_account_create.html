@@ -1,0 +1,14 @@
+{% extends "payment/base.html" %}
+
+{% block title %}Create Payment Account{% endblock %}
+
+{% block content %}
+<h2>Create Payment Account</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="{% url 'payment_account_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

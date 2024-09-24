@@ -1,0 +1,36 @@
+{% extends "payment/base.html" %}
+
+{% block title %}Payment Accounts{% endblock %}
+
+{% block content %}
+<h2>Payment Accounts</h2>
+<a href="{% url 'payment_account_create' %}" class="btn btn-primary mb-3">Create New Payment Account</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Account No</th>
+            <th>Balance</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for payment_account in payment_accounts %}
+            <tr>
+                <td>{{ payment_account.id }}</td>
+                <td>{{ payment_account.customer }}</td>
+                <td>{{ payment_account.account_no }}</td>
+                <td>{{ payment_account.balance }}</td>
+                <td>{{ payment_account.status }}</td>
+                <td>
+                    <a href="{% url 'payment_account_update' payment_account.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'payment_account_delete' payment_account.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

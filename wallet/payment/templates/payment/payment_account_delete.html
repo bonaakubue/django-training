@@ -1,0 +1,15 @@
+{% extends "payment/base.html" %}
+
+{% block title %}Delete Payment Account{% endblock %}
+
+{% block content %}
+<h2>Delete Payment Account</h2>
+
+<p>Are you sure you want to delete this payment account?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a href="{% url 'payment_account_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
