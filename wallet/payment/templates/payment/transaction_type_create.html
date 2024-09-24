@@ -1,20 +1,14 @@
-{% extends 'dashboard.html' %}
-{% load static %}
+{% extends "dashboard.html" %}
+
+{% block title %}Create Transaction Type{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-6">
-            <h3>Create Transaction Type</h3>
+<h2>Create Transaction Type</h2>
 
-            <form method="Post">
-                {% csrf_token %}
-                {{ form.as_p }}
-
-                <button>Create</button>
-
-            </form>
-        </div>
-    </div>
-</div>
-{% endblock content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="{% url 'transaction_type_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

@@ -4,61 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wallet</title>
+    <title>{% block title %}Payment System{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Company</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">About</a>
-              </li>
-              {% if user.is_authenticated %}
-              <li class="nav-item"></li>
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-              </li>
-              {% endif %}
-              
-            </ul>
-          </div>
-        </div>
-      </nav>
+            <a class="navbar-brand" href="#">Company</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'transaction_type_list' %}active{% endif %}" href="{% url 'transaction_type_list' %}">Transaction Types</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'payment_account_list' %}active{% endif %}" href="{% url 'payment_account_list' %}">Payment Accounts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'transaction_list' %}active{% endif %}" href="{% url 'transaction_list' %}">Transactions</a>
+                    </li>
+                </ul>
 
-      <main>
-        {% block content %}
-        {% endblock content %}
-      </main>
-      <footer>
-        <div class="container-fluid bg-primary mt-5">
-            <div class="row">
-              <div class="col-md-6">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Register</li>
-                    <li>Login</li>
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Welcome, {{ user.username }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
-                
+        </div>
+    </nav>
 
+    <main class="container mt-5">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="bg-primary text-white mt-5 p-4">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Quick Links</h3>
+                    <ul class="list-unstyled">
+                        <li><a class="text-white" href="{% url 'home' %}">Home</a></li>
+                        <li><a class="text-white" href="{% url 'about' %}">About</a></li>
+                        <li><a class="text-white" href="{% url 'register' %}">Register</a></li>
+                        <li><a class="text-white" href="{% url 'login' %}">Login</a></li>
+                    </ul>
+                </div>
                 <div class="col-md-6">
                     <h3>Company</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni cum fugiat accusamus animi aut sequi maxime corporis, nobis iste ab!</p>
                 </div>
             </div>
         </div>
-      </footer>
-    
+    </footer>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
-<script scr="{% static 'js/boostrap.bundle.min.js' %}"></script>
 </html>

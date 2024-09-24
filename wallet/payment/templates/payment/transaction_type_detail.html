@@ -1,27 +1,15 @@
-{% extends 'dashboard.html' %}
-{% load static %}
+{% extends "dashboard.html" %}
+
+{% block title %}Transaction Type Details{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-6">
-            <h3>Transaction Type Details</h3>
-            
-            <p class="text-primary">{{ transactiontype.name }}</p>
-            <p class="text-primary">{{ transactiontype.description }}</p>
+<h2>Transaction Type Details</h2>
 
-            <!-- Update Button -->
-            <a href="{% url 'transaction_type_update' transactiontype.pk %}" class="btn btn-primary mt-3">
-                Update
-            </a>
+<ul class="list-group">
+    <li class="list-group-item"><strong>ID:</strong> {{ transactiontype.id }}</li>
+    <li class="list-group-item"><strong>Name:</strong> {{ transactiontype.name }}</li>
+    <li class="list-group-item"><strong>Description:</strong> {{ transactiontype.description }}</li>
+</ul>
 
-            <form method="POST" action="{% url 'transaction_type_delete' transactiontype.pk %}" class="d-inline">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger mt-3">
-                    Delete
-                </button>
-            </form>
-        </div>
-    </div>
-</div>
-{% endblock content %}
+<a href="{% url 'transaction_type_list' %}" class="btn btn-secondary mt-3">Back to List</a>
+{% endblock %}

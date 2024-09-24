@@ -1,18 +1,33 @@
-{% extends 'dashboard.html' %}
-{% load static %}
+{% extends "dashboard.html" %}
+
+{% block title %}Transaction Types{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-6">
-            <h3>Transaction Type List</h3>
-            {% for transactiontype in transactiontypes %}
-            <h4>{{transactiontype.name}}</h4>
-            <a href="{% url 'transaction_type_detail' transactiontype.pk %}">View</a>
-            <hr />
-            {% endfor %}
+<h2>Transaction Types</h2>
+<a href="{% url 'transaction_type_create' %}" class="btn btn-primary mb-3">Create New Transaction Type</a>
 
-        </div>
-    </div>
-</div>
-{% endblock content %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transactiontype in transactiontypes %}
+            <tr>
+                <td>{{ transactiontype.id }}</td>
+                <td>{{ transactiontype.name }}</td>
+                <td>{{ transactiontype.description }}</td>
+                <td>
+                    <a href="{% url 'transaction_type_detail' transactiontype.id %}" class="btn btn-info btn-sm">View</a>
+                    <a href="{% url 'transaction_type_update' transactiontype.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'transaction_type_delete' transactiontype.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
