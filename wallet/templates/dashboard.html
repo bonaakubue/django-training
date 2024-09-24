@@ -17,16 +17,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'transaction_type_list' %}active{% endif %}" href="{% url 'transaction_type_list' %}">Transaction Types</a>
+                        <a class="nav-link" href="{% url 'transaction_type_list' %}">Transaction Types</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'payment_account_list' %}active{% endif %}" href="{% url 'payment_account_list' %}">Payment Accounts</a>
+                        <a class="nav-link" href="{% url 'payment_account_list' %}">Payment Accounts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'transaction_list' %}active{% endif %}" href="{% url 'transaction_list' %}">Transactions</a>
+                        <a class="nav-link" href="{% url 'transaction_list' %}">Transactions</a>
                     </li>
-                </ul>
-
+              </ul>
+            
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
                         <li class="nav-item">
